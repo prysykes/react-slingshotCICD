@@ -14,10 +14,6 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - save_cache:
-          key: "npm-packages"
-          paths:
-            - /src/node_modules
       - run: npm run lint
   
   
@@ -25,9 +21,6 @@ jobs:
     executor: my-executor
     steps:
       - checkout
-      - restore_cache:
-          keys: 
-            - "npm-packages"
       - run: npm i # you could also use command here and access this value as a parameter
       - run: npm run test
   
@@ -35,17 +28,17 @@ jobs:
     executor: my-executor
     steps:
       - checkout
-      - restore_cache:
-          keys: 
-            - "npm-packages"
-     
       - run: npm audit
 
 workflow:
-  react-app-workflow:
+  react-app-workflow2:
     jobs:
       - build
-      - test
-      - analyse
+      - test:
+          requires:
+            - build
+      - analyse:
+          requires:
+            - test
   
       
