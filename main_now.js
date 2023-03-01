@@ -1,7 +1,7 @@
-var _name = "Emeka"
+var _name = "To whom it may concern"
 
 function my_name(name){
-    if (name = "Emeka"){
+    if (name = "To whom it may concern"){
         return true
     }
     return false
