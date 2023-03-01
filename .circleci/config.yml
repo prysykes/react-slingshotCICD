@@ -28,7 +28,7 @@ jobs:
       - restore_cache:
           keys: 
             - "npm-packages"
-      - run: npm i
+      - run: npm i # you could also use command here and access this value as a parameter
       - run: npm run test
   
   analyze:
@@ -45,11 +45,7 @@ workflow:
   react-app-workflow:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - analyse:
-          requires:
-            - test
+      - test
+      - analyse
   
       
